@@ -1,3 +1,6 @@
+## Tests for project test_app
+https://github.com/dgusakov/test_app
+
 ### install webdriver for linux
 ```
 curl -L https://chromedriver.storage.googleapis.com/{number_version_chromedriver}/chromedriver_linux64.zip -o chromedriver.zip
