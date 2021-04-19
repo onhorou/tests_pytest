@@ -13,3 +13,4 @@ dist/
 /venv
 *.html
 /allure-result
+template_file.yaml
