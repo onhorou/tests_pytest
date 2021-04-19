@@ -60,11 +60,11 @@ class ApiClient:
     @staticmethod
     def delete_template(tmpl_id):
         response = requests.delete(f"{BASE_URL}/api/v1/templates/{tmpl_id}")
-        log.info(f"delete_template: {response.json()}")
+        log.info(f"delete_template: code: {response} json: {response.json()}")
 
-        response.raise_for_status()
+        log.info(f"delete_template: {response}")
 
-        return response.json()
+        return response, response.json()
 
     @staticmethod
     def clearing_list_templates():
