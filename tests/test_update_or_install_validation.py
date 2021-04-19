@@ -67,9 +67,3 @@ def test_update_txt_file(api_client, base_page):
         list_templates = api_client.get_list_templates()
         assert tmpl_id not in list_templates
 
-
-@allure.story("Delete not existing template")
-def test_delete_not_existing_template(api_client):
-    with allure.step('delete not existing template'):
-        response = api_client.delete_template(88)
-        assert response[0].status_code == 404
