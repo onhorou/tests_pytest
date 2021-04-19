@@ -27,10 +27,10 @@ def test_depends_not_present_parents_install(api_client, base_page, generated_li
     argnames="generated_list_for_yml_file, tmpl_id",
     argvalues=[
         [duplicate_element_id(), 1],
+        [invalid_element_depends_field(), 5],
         [duplicate_element_label(), 2],
         [invalid_element_label_field(), 3],
         [invalid_element_id_field(), 4],
-        [invalid_element_depends_field(), 5],
     ],
 )
 def test_invalid_install_element(api_client, base_page, generated_list_for_yml_file, tmpl_id):
@@ -44,3 +44,13 @@ def test_invalid_install_element(api_client, base_page, generated_list_for_yml_f
         base_page.get_list_page_elements()
         response = api_client.install_template(tmpl_id)
         assert response[0].status_code == 400
+
+
+def test_invalid_install_id_template(api_client, base_page):
+    with allure.step('check that the list of templates is empty'):
+        list_templates = api_client.get_list_templates()
+        assert not list_templates
+    with allure.step('install the added template'):
+        base_page.get_list_page_elements()
+        response = api_client.install_template(100)
+        assert response[0].status_code == 404

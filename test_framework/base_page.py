@@ -55,10 +55,11 @@ class BasePage:
 
         self.go_to_page()
         list_button = self.elements_by_selector('.form-group')
-        for button in list_button:
-            attribute_id = button.find_element_by_css_selector('button').get_attribute('id')
-            attribute_label = button.find_element_by_css_selector('button').text
-            list_page_elements.append({"id": attribute_id, "label": attribute_label})
+        if list_button:
+            for button in list_button:
+                attribute_id = button.find_element_by_css_selector('button').get_attribute('id')
+                attribute_label = button.find_element_by_css_selector('button').text
+                list_page_elements.append({"id": attribute_id, "label": attribute_label})
 
         log.info(f"list page elements: {list_page_elements}")
         return list_page_elements
