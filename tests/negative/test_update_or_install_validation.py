@@ -46,6 +46,7 @@ def test_invalid_install_element(api_client, base_page, generated_list_for_yml_f
         assert response[0].status_code == 400
 
 
+@allure.story("Template install invalid id template")
 def test_invalid_install_id_template(api_client, base_page):
     with allure.step('check that the list of templates is empty'):
         list_templates = api_client.get_list_templates()
@@ -54,3 +55,14 @@ def test_invalid_install_id_template(api_client, base_page):
         base_page.get_list_page_elements()
         response = api_client.install_template(100)
         assert response[0].status_code == 404
+
+
+@allure.story("Update txt file")
+def test_update_txt_file(api_client, base_page):
+    with allure.step('upload template'):
+        response = api_client.upload_template_txt_file(one_button_with_id_and_label(), tmpl_id=1)
+        tmpl_id = response[1]['message'].split("tmpl_id=")[-1]
+        assert response[0].status_code == 400
+    with allure.step('check that Id appears in the list of templates'):
+        list_templates = api_client.get_list_templates()
+        assert tmpl_id not in list_templates
