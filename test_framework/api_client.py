@@ -30,7 +30,7 @@ class ApiClient:
     @staticmethod
     def install_template(tmpl_id):
         response = requests.post(f"{BASE_URL}/api/v1/templates/{tmpl_id}/install")
-        log.info(f"install_template: {response.json()}")
+        log.info(f"install_template code: {response} json: {response.json()}")
 
         return response, response.json()
 

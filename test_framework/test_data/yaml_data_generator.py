@@ -37,3 +37,28 @@ def two_button_with_depends() -> list:
 def two_button_with_depends_not_present_parents() -> list:
     return [{'id': '1', 'label': 'button1'},
             {'id': '2', 'label': 'button2', 'depends': "3"}]
+
+
+def duplicate_element_id():
+    return[{'id': '1', 'id': '3', 'label': 'button1'},
+           {'id': '2', 'label': 'button2'}]
+
+
+def duplicate_element_label():
+    return[{'id': '1', 'label': 'button1', 'label': 'button2'},
+           {'id': '2', 'label': 'button2'}]
+
+
+def invalid_element_label_field():
+    return [{'id': '1', 'labelyyy': 'button2'},
+            {'id': '2', 'label': 'button2'}]
+
+
+def invalid_element_id_field():
+    return [{'id111': '1', 'label': 'button1'},
+            {'id': '2', 'label': 'button2'}]
+
+
+def invalid_element_depends_field():
+    return [{'id': '1', 'label': 'button1'},
+            {'id': '2', 'label': 'button2', 'dependssdfd': 2}]
