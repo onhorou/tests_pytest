@@ -16,15 +16,15 @@ from test_framework.test_data.yaml_data_generator import *
     ],
 )
 def test_success_template_install(api_client, base_page, generated_list_for_yml_file, tmpl_id):
-    with allure.step('clearing the list of templates'):
-        api_client.clearing_list_templates()
     with allure.step('upload template'):
-        tmpl_id = api_client.upload_template(generated_list_for_yml_file, tmpl_id)
+        response = api_client.upload_template(generated_list_for_yml_file, tmpl_id)
+        tmpl_id = response['message'].split("tmpl_id=")[-1]
     with allure.step('check that Id appears in the list of templates'):
         list_templates = api_client.get_list_templates()
         assert tmpl_id in list_templates
     with allure.step('install the added template'):
-        api_client.install_template(tmpl_id)
+        response = api_client.install_template(tmpl_id)
+        response[0].raise_for_status()
     with allure.step('open the template in a browser and get a list of page elements'):
         list_elements_from_page = base_page.get_list_page_elements()
     with allure.step('creating a list of items to compare'):
@@ -41,15 +41,15 @@ def test_success_template_install(api_client, base_page, generated_list_for_yml_
     ],
 )
 def test_success_template_with_link(api_client, base_page, generated_list_for_yml_file, tmpl_id):
-    with allure.step('clearing the list of templates'):
-        api_client.clearing_list_templates()
     with allure.step('upload template'):
-        tmpl_id = api_client.upload_template(generated_list_for_yml_file, tmpl_id)
+        response = api_client.upload_template(generated_list_for_yml_file, tmpl_id)
+        tmpl_id = response['message'].split("tmpl_id=")[-1]
     with allure.step('check that Id appears in the list of templates'):
         list_templates = api_client.get_list_templates()
         assert tmpl_id in list_templates
     with allure.step('install the added template'):
-        api_client.install_template(tmpl_id)
+        response = api_client.install_template(tmpl_id)
+        response[0].raise_for_status()
     with allure.step('open the template in a browser and '
                      'check that I can click on the element if it has a label'):
         id_element = hundred_button_with_link()[0]['id']
@@ -69,15 +69,15 @@ def test_success_template_with_link(api_client, base_page, generated_list_for_ym
     ],
 )
 def test_success_template_with_depends(api_client, base_page, generated_list_for_yml_file, tmpl_id):
-    with allure.step('clearing the list of templates'):
-        api_client.clearing_list_templates()
     with allure.step('upload template'):
-        tmpl_id = api_client.upload_template(generated_list_for_yml_file, tmpl_id)
+        response = api_client.upload_template(generated_list_for_yml_file, tmpl_id)
+        tmpl_id = response['message'].split("tmpl_id=")[-1]
     with allure.step('check that Id appears in the list of templates'):
         list_templates = api_client.get_list_templates()
         assert tmpl_id in list_templates
     with allure.step('install the added template'):
-        api_client.install_template(tmpl_id)
+        response = api_client.install_template(tmpl_id)
+        response[0].raise_for_status()
     with allure.step('open the template in a browser and get a list of page elements'):
         list_elements_from_page = base_page.get_list_page_elements()
     with allure.step('creating a list of items to compare'):

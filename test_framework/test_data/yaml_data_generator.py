@@ -32,3 +32,8 @@ def hundred_button_with_link() -> list:
 def two_button_with_depends() -> list:
     return [{'id': '1', 'label': 'button1'},
             {'id': '2', 'label': 'button2', 'depends': 1}]
+
+
+def two_button_with_depends_not_present_parents() -> list:
+    return [{'id': '1', 'label': 'button1'},
+            {'id': '2', 'label': 'button2', 'depends': "3"}]

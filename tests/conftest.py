@@ -21,6 +21,11 @@ def api_client(get_yaml_client):
     return ApiClient(get_yaml_client)
 
 
+@pytest.fixture(autouse=True)
+def clearing_list_templates(api_client):
+    api_client.clearing_list_templates()
+
+
 @pytest.fixture
 def get_yaml_client():
     return YamlClient()

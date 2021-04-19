@@ -22,20 +22,17 @@ class ApiClient:
         response = requests.post(f"{BASE_URL}/api/v1/templates",
                                  files=file,
                                  data=payload)
+        log.info(f"upload_template: {response.json()}")
         response.raise_for_status()
 
-        message = response.json()['message']
-        tmpl_id = message.split("tmpl_id=")
-        log.info(f"upload_template: {message}")
-        return tmpl_id[-1]
+        return response.json()
 
     @staticmethod
     def install_template(tmpl_id):
         response = requests.post(f"{BASE_URL}/api/v1/templates/{tmpl_id}/install")
-        response.raise_for_status()
-
         log.info(f"install_template: {response.json()}")
-        return response.json()
+
+        return response, response.json()
 
     @staticmethod
     def get_list_templates() -> Optional[list]:
@@ -49,9 +46,10 @@ class ApiClient:
     @staticmethod
     def delete_template(tmpl_id):
         response = requests.delete(f"{BASE_URL}/api/v1/templates/{tmpl_id}")
+        log.info(f"delete_template: {response.json()}")
+
         response.raise_for_status()
 
-        log.info(f"delete_template: {response.json()}")
         return response.json()
 
     @staticmethod
