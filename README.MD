@@ -4,7 +4,7 @@ curl -L https://chromedriver.storage.googleapis.com/{number_version_chromedriver
 sudo unzip chromedriver.zip -d /usr/bin/
 sudo chmod +x /usr/bin/chromedriver
 ```
-> Где `{number_version_chromedriver}` = chrome local browser version
+> `{number_version_chromedriver}` = chrome local browser version
 
 ### install dependencies
 - cd to the directory where requirements.txt is located.
