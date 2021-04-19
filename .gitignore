@@ -1,0 +1,15 @@
+*.pyc
+/.idea
+/.cache
+/.pytest_cache
+/.mypy_cache
+.DS_Store
+__pycache__
+__cache__
+/lib/*
+/pip-wheel-metadata
+dist/
+**debug.log
+/venv
+*.html
+/allure-result
